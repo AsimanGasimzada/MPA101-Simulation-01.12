@@ -21,9 +21,6 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             options.HasCheckConstraint("CK_Products_Rating", "[Rating] between 0 and 5");
         });
 
-
         builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId).HasPrincipalKey(x => x.Id).OnDelete(DeleteBehavior.Cascade);
-
-
     }
 }
