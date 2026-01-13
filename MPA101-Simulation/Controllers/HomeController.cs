@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MPA101_Simulation.Contexts;
@@ -26,6 +27,11 @@ namespace MPA101_Simulation.Controllers
             return View(products);
         }
 
+        [Authorize(Roles = "Member")]
+        public IActionResult Test()
+        {
+            return Ok("Salam");
+        }
 
 
     }

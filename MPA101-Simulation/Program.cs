@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MPA101_Simulation.Contexts;
+using MPA101_Simulation.Models;
 
 namespace MPA101_Simulation
 {
@@ -17,6 +19,10 @@ namespace MPA101_Simulation
             });
 
 
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             var app = builder.Build();
 
 
@@ -25,6 +31,7 @@ namespace MPA101_Simulation
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
